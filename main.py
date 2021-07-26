@@ -1,10 +1,20 @@
 from classes import *
 import csv
 
-mneList = list([Mnemonic('LD', '0000', 'memoryRead'), Mnemonic('ADD', '0001', 'arithimetic')])
+mneList = list()
+with open('pseudo.txt') as pseudoInstructionsFile:
+    pseudoInstructions = csv.reader(pseudoInstructionsFile, delimiter=',')
+
+    for line in pseudoInstructions:
+
+        mneList.append(Mnemonic(line[0], line[1], line[2], line[3], line[4], line[5]))
 
 symbolTable = Table[Symbol]([])
 mneTable = Table[Mnemonic](genericList=mneList)
+
+print()
+print("Tabela de Mneumônicos")
+print(mneTable)
 
 # print(item._mnemonic)
 
@@ -42,8 +52,9 @@ with open('teste.txt') as programaFonte:
         mne = mneTable.get(name)
         if mne == None:
             raise Exception("Mneumonic " + name + " not defined")
+        print("size: " + str(mne.size()) + " bytes")
 
         ## PASSO 2
-
+print()
+print("Tabela de simbolos")
 print(symbolTable)
-print(mneTable)

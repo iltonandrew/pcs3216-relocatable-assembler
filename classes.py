@@ -29,14 +29,25 @@ class Symbol:
 
 class Mnemonic:
 
-    def __init__(self, mnemonic: str, code: str, mnemonicType: str):
-        self._mnemonic = mnemonic
-        self._code = code
-        self._type = mnemonicType
+    def __init__(self,
+                name:str,
+                mnemonic: str,
+                codeStruct: str,
+                mneType: str,
+                value: str,
+                operand: str):
+        self._mnemonic = mnemonic.strip()
+        self._codeStruct = codeStruct.strip()
+        self._type = mneType.strip()
+        self._value = value.strip()
+        self._operand = operand.strip()
+        self._name = name.strip()
 
     def __str__(self):
-        return self._mnemonic + "   " + self._code + "   " + self._type
+        return self._codeStruct + "   " + self._type + "   " + self._mnemonic + "   " + self._name + "   " + self._value + "   " + self._operand
 
+    def size(self):
+        return len(self._codeStruct)//8
     def __eq__(self, other):
        if other == self._mnemonic:
            return True
