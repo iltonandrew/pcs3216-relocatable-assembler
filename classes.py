@@ -30,24 +30,23 @@ class Symbol:
 class Mnemonic:
 
     def __init__(self,
-                name:str,
                 mnemonic: str,
-                codeStruct: str,
+                code: int,
+                size: int,
                 mneType: str,
-                value: str,
                 operand: str):
         self._mnemonic = mnemonic.strip()
-        self._codeStruct = codeStruct.strip()
+        self._code = code
+        self._size = size if size != None else 0
         self._type = mneType.strip()
-        self._value = value.strip()
         self._operand = operand.strip()
-        self._name = name.strip()
 
     def __str__(self):
-        return self._codeStruct + "   " + self._type + "   " + self._mnemonic + "   " + self._name + "   " + self._value + "   " + self._operand
+        return "{:<8} {:<5} {:<4} {:<10} {:<10}\n".format(self._mnemonic,self._code,self._size,self._type,self._operand)
 
     def size(self):
-        return len(self._codeStruct)//8
+        return self._size
+
     def __eq__(self, other):
        if other == self._mnemonic:
            return True
@@ -66,13 +65,13 @@ class Table(Generic[T]):
         for item in genericList:
             self._dict[item.key()] = item
         
-    def get(self, key: str):
+    def get(self, key: str) -> T:
         try:
             return self._dict[key]
         except KeyError:
             return None
     
-    def set(self, item: T,):
+    def set(self, item: T):
         key = item.key()
         if self.get(key) == None: raise Exception("Table does not contains key " + key)
         self._dict[key] = item
@@ -88,4 +87,35 @@ class Table(Generic[T]):
         for line in self._dict.values():
             string += str(line) + '\n'
         return string
-    
+
+
+class BlocoDeSaida():
+    def __init__(self) -> None:
+        self._tabela = [['Endereço', 'código', 'rótulo', 'Mnemônico', 'Operando']]
+
+    def add(self, address, cod, rotulo, mne, op):
+        line = [address, cod, rotulo, mne, op]
+        self._tabela.append(line)
+
+    def __str__(self):
+        out = ''
+        for line in self._tabela:
+            out += "{:<8} {:<7} {:<6} {:<9} {:<8}\n".format(line[0],line[1],line[2],line[3],line[4])
+        return out
+
+class Line():
+    def __init__(self, string: str):
+        command, comment = '', ''
+        if ';' in string:
+            command, comment = string.split(';')
+        else: command = string
+        self.comment = comment
+        line = command.split()
+        if len(line) > 2:
+            self.rotulo = line[0]
+            self.mne = line[1]
+            self.op = line[2]
+        else:
+            self.rotulo = ''
+            self.mne = line[0]
+            self.op = line[1]

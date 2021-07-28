@@ -1,0 +1,5 @@
+@,,, ORG, address
+K, 00, 1, DefByte, Value
+LD, 8, 2, LOAD, address
+MM, 9, 2, MOVE, address
+JP, 0, 2, JUMP, address

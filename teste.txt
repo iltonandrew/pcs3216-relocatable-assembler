@@ -1,2 +1,7 @@
-,LD,123,abc
-LOOP,ADD,0,1
+        @   0X0100
+DADO    K   0
+AUX     K   0
+INIC    LD  AUX
+        MM  AUX
+LOOP    LD  DADO
+        JP  LOOP

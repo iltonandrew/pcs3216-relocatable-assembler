@@ -1,3 +1,0 @@
-name, mnemonic, codeStruct, mneType, value, operand
-LOAD, LD, 0001XXXXXXXXXXXX, memoryI/O, , address
-SUM, ADD, 1000XXXXXXXXXXXX, aritmethics, int, int
