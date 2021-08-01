@@ -1,6 +1,5 @@
 # Symbolic Instruction Format
-- csv format
-> rótulo(?), mnemonico, valor, operando
+> rótulo(?) mnemonico operando
 
 # TODO Program
 - [x] class generic table
