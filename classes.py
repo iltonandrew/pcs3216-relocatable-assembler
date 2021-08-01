@@ -13,7 +13,7 @@ class Symbol:
         self.defined = True
     
     def __str__(self):
-        return self._name + "   " + self.address + "   " + ('D' if self.defined else 'I') + "   " + self._type
+        return "{:<8} {:<5} {:<4} {:<10}\n".format(self._name, self.address, ('D' if self.defined else 'I'), self._type)
     
     def __eq__(self, other):
     
@@ -46,6 +46,9 @@ class Mnemonic:
 
     def size(self):
         return self._size
+    
+    def code(self, address:str):
+        return self._code
 
     def __eq__(self, other):
        if other == self._mnemonic:
@@ -57,6 +60,13 @@ class Mnemonic:
     
     def __hash__(self):
         return hash(self._mnemonic)
+
+class OperandMnemonic(Mnemonic):
+    def __init__(self, mnemonic: str, code: int, size: int, mneType: str, operand: str):
+        super().__init__(mnemonic, code, size, mneType, operand)
+    
+    def code(self, address: str):
+        return self._code + address
 
 class Table(Generic[T]):
 
@@ -87,7 +97,6 @@ class Table(Generic[T]):
         for line in self._dict.values():
             string += str(line) + '\n'
         return string
-
 
 class BlocoDeSaida():
     def __init__(self) -> None:

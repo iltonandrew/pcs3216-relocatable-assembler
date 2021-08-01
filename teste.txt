@@ -1,4 +1,3 @@
-        @   0X0100
 DADO    K   0
 AUX     K   0
 INIC    LD  AUX
