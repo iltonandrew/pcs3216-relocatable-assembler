@@ -107,6 +107,9 @@ class BlocoDeSaida:
         line = [address, cod, rotulo, mne, op]
         self._tabela.append(line)
 
+    def insert(self, index, Line):
+        self._tabela.insert(index, Line)
+
     def __str__(self):
         out = ''
         for line in self._tabela:

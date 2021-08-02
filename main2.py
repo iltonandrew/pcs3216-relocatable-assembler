@@ -146,102 +146,92 @@ saida = open("saida.txt", "w")
 saida.write("Tabela de simbolos\n")
 saida.write("{:<8} {:<8} {:<5} {:<4} {:<10}\n".format('Nome', 'Endereço', 'Valor', 'I/D', 'Tipo'))
 saida.write(str(symbolTable))
-saida.close()
+
 
 # PASSO 2
 print('passo 2')
 with open(arqTeste) as programaFonte:
+
+    CI = 0
     
     for l in program:
         linha = l.split()
 
         instruc = mneTable.get(linha[0])
+        rotulo = ""
 
         # tem rótulo?
         if instruc == None:
             # linha[0] é rótulo
             rotulo = symbolTable.get(linha[0])
 
-            '''
-                Your code here
-            '''
-
             linha.pop(0)
             instruc = mneTable.get(linha[0])
 
         # é pseudo?
         if instruc._type == 'ORG':
-
-            '''
-                Your code here
-            '''
-            
-            pass
+            CI = int(linha[1], 16)
         
         elif instruc._type == 'END':
-
-            '''
-                Your code here
-            '''
-            
-            pass
+            pass            
         
-        elif instruc._type == 'EQU':
-
-            '''
-                Your code here
-            '''
-            
+        elif instruc._type == 'EQU':            
             pass
             
 
         elif instruc._type == 'DBDWDA':
+            #define uma constante na memoria
+            operando = linha[1]
 
-            '''
-                Your code here
-            '''
-            
-            pass
+            s = symbolTable.get(operando)
+            if s:
+                operando = s.address
+                size = 1
+            else:
+                size = int(operando) // 256 + 1
+                operando = operando.zfill(size*2)
+
+            rotulo = rotulo._name if rotulo !=  "" else ""
+            outBlock.add(hex(CI), operando, rotulo, linha[0], linha[1])
+            CI += size
 
         elif instruc._type == 'BLOC':
 
-            '''
-                Your code here
-            '''
-            
-            pass
+            rotulo = rotulo._name if rotulo !=  "" else ""
+            outBlock.add(hex(CI), "00", rotulo, linha[0], linha[1])
+            CI += 1
+            for i in range(int(linha[1])-1):
+                outBlock.add(hex(CI), "00", "", "", "")
+                CI += 1
 
         elif instruc._type == 'NAME':
-
-            '''
-                Your code here
-            '''
-            
             pass
 
         elif instruc._type == 'ENTRY':
-
-            '''
-                Your code here
-            '''
-            
             pass
 
         elif instruc._type == 'EXTERNAL':
-
-            '''
-                Your code here
-            '''
-            
             pass
                 
         # não é pseudo
-        else:
-
-            '''
-                Your code here
-            '''
+        else: 
+            s = symbolTable.get(linha[1]) #procura operando na tab simbolos, assumindo q sempre vai ser simbolo
+            codigo = instruc._code + s.address[2:]
+            rotulo = rotulo._name if rotulo !=  "" else ""
+            outBlock.add(hex(CI), codigo, rotulo, linha[0], linha[1])
+            CI += instruc._size
             
-            pass
+print()
+print("Bloco de saida")
+print()
+print("{:<8} {:<5} {:<4} {:<10} {:<10}".format('CI', 'codigo', 'rotulo', 'mnemonico', 'operand'))
+print(outBlock)
 
+
+# Write obj-program on saida.txt file
+
+saida.write("Bloco de saida\n")
+saida.write("{:<8} {:<5} {:<4} {:<10} {:<10}\n".format('CI', 'codigo', 'rotulo', 'mnemonico', 'operand'))
+saida.write(str(outBlock))
+saida.close()
 
