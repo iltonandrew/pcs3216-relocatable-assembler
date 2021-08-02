@@ -2,7 +2,7 @@
         NAME    somaVetor4
         ENT     VETOR
         EXT     SAIDA
-        EQU     TOTAL SAIDA
+TOTAL   K       0
 IT      K       4
 AUX     K       VETOR
 NEXT    K       2
