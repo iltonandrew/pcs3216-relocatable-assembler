@@ -1,6 +1,13 @@
+        @   0x100
+        NAME TESTE
 DADO    K   0
 AUX     K   0
 INIC    LD  AUX
-        MM  AUX
+        MM  I
 LOOP    LD  DADO
         JP  LOOP
+        EQU DADO2 DADO
+        $ 4
+        ENTRY DADO AUX
+        EXTERNAL I
+        # INIC

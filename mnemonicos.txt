@@ -1,5 +1,11 @@
-@,,, ORG, address, tag
-K, 00, 1, DefByte, Value, const
+@,,, ORG, address, pseudo
+K, 00, 1, DBDWDA, Value, const
 LD, 8, 2, LOAD, address, instruction
 MM, 9, 2, MOVE, address, instruction
 JP, 0, 2, JUMP, address, instruction
+#,,,END, address,pseudo
+$,,, BLOC, size, pseudo
+EQU,,, EQU, address, pseudo
+NAME,,, NAME, string, pseudo
+ENTRY,,, ENTRY, addressList, pseudo
+EXTERNAL,,, EXTERNAL, addressList, pseudo

@@ -8,12 +8,13 @@ class Symbol:
         self._type = symbolType
         self.defined = False
         self._referenced = False
+        self.value = None
 
     def define(self):
         self.defined = True
     
     def __str__(self):
-        return "{:<8} {:<5} {:<4} {:<10}\n".format(self._name, self.address, ('D' if self.defined else 'I'), self._type)
+        return "{:<8} {:<8} {:<5} {:<4} {:<10}".format(self._name, (self.address if self.address else '-'), (self.value if self.value else '-'), ('D' if self.defined else 'I'), self._type)
     
     def __eq__(self, other):
     
@@ -42,7 +43,7 @@ class Mnemonic:
         self._operand = operand.strip()
 
     def __str__(self):
-        return "{:<8} {:<5} {:<4} {:<10} {:<10}\n".format(self._mnemonic,self._code,self._size,self._type,self._operand)
+        return "{:<8} {:<5} {:<4} {:<10} {:<10}".format(self._mnemonic,self._code,self._size,self._type,self._operand)
 
     def size(self):
         return self._size
