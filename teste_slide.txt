@@ -1,0 +1,8 @@
+@   0100
+AUX     K   0
+DADO    K   0
+INIC    LD  AUX
+        MM  AUX
+LOOP    LD  DADO
+        JPNZ  LOOP
+        #   INIC

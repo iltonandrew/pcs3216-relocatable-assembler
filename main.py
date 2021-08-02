@@ -1,4 +1,4 @@
-from classes import *
+from classes import BlocoDeSaida, Symbol, Mnemonic, Table, OperandMnemonic
 import csv
 
 arqTeste = "somaVetor4.txt"
