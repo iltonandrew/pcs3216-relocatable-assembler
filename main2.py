@@ -1,6 +1,7 @@
 from classes import *
 import csv
 
+arqTeste = "somaVetor4.txt"
 outBlock = BlocoDeSaida()
 
 mneList = list()
@@ -27,7 +28,7 @@ print(mneTable)
 passo = 1
 # PASSO 1
 print('passo 1')
-with open('teste.txt') as programaFonte:
+with open(arqTeste) as programaFonte:
     
     program = programaFonte.readlines()
     CI = 0
@@ -149,7 +150,7 @@ saida.close()
 
 # PASSO 2
 print('passo 2')
-with open('teste.txt') as programaFonte:
+with open(arqTeste) as programaFonte:
     
     for l in program:
         linha = l.split()
