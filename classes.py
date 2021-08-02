@@ -7,7 +7,7 @@ class Symbol:
         self.address = None
         self._type = symbolType
         self.defined = False
-        self._referenced = False
+        self.references = []
         self.value = None
 
     def define(self):
@@ -99,7 +99,7 @@ class Table(Generic[T]):
             string += str(line) + '\n'
         return string
 
-class BlocoDeSaida():
+class BlocoDeSaida:
     def __init__(self) -> None:
         self._tabela = [['Endereço', 'código', 'rótulo', 'Mnemônico', 'Operando']]
 
@@ -113,7 +113,7 @@ class BlocoDeSaida():
             out += "{:<8} {:<7} {:<6} {:<9} {:<8}\n".format(line[0],line[1],line[2],line[3],line[4])
         return out
 
-class Line():
+class Line:
     def __init__(self, string: str):
         command, comment = '', ''
         if ';' in string:

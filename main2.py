@@ -135,11 +135,15 @@ with open('teste.txt') as programaFonte:
         
         print("CI atualizado para ", hex(CI))
 
+# Check Symbol Table
 
-print()
-print("Tabela de simbolos")
-print("{:<8} {:<8} {:<5} {:<4} {:<10}".format('Nome', 'Endereço', 'Valor', 'I/D', 'Tipo'))
-print(symbolTable)
+# Write obj-program header on saida.txt file
+
+saida = open("saida.txt", "w")
+saida.write("Tabela de simbolos\n")
+saida.write("{:<8} {:<8} {:<5} {:<4} {:<10}\n".format('Nome', 'Endereço', 'Valor', 'I/D', 'Tipo'))
+saida.write(str(symbolTable))
+saida.close()
 
 # PASSO 2
 print('passo 2')
