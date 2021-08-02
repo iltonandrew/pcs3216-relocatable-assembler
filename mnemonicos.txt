@@ -1,11 +1,14 @@
 @,,, ORG, address, pseudo
-K, 00, 1, DBDWDA, Value, const
+K,,, DBDWDA, Value, pseudo
+JPNZ, 0, 2, JUMP, address, instruction
+DEC, 5, 2, DECREMENT, address, instruction
+ADD, 6, 2, ADD, address, instruction
+MM, 7, 2, MOVE, address, instruction
 LD, 8, 2, LOAD, address, instruction
-MM, 9, 2, MOVE, address, instruction
-JP, 0, 2, JUMP, address, instruction
+LDI, 9, 2, INCR LD, address, instruction
 #,,,END, address,pseudo
 $,,, BLOC, size, pseudo
 EQU,,, EQU, address, pseudo
 NAME,,, NAME, string, pseudo
-ENTRY,,, ENTRY, addressList, pseudo
-EXTERNAL,,, EXTERNAL, addressList, pseudo
+ENT,,, ENTRY, addressList, pseudo
+EXT,,, EXTERNAL, addressList, pseudo

@@ -1,0 +1,17 @@
+        @       0x100
+        NAME    somaVetor4
+        ENT     VETOR
+        EXT     SAIDA
+        EQU     TOTAL SAIDA
+IT      K       4
+AUX     K       VETOR
+NEXT    K       2
+VETOR   K       0
+        $       7
+LOOP    LDI     AUX
+        ADD     TOTAL
+        MM      TOTAL
+        DEC     IT
+        JPNZ    IT    
+        $       4
+        #       LOOP

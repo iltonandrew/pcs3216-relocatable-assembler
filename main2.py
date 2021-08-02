@@ -84,11 +84,13 @@ with open('teste.txt') as programaFonte:
             break
         
         elif instruc._type == 'EQU':
-            address = symbolTable.get(linha[2]).address if symbolTable.get(linha[2]) else int(linha[2], 16)
             equ = Symbol(linha[1], 'equivalencia')
             equ.value = linha[2]
             equ.define()
-            symbolTable.add(equ)
+            if not symbolTable.get(linha[1]):
+                symbolTable.add(equ)
+            else:
+                symbolTable.set(equ)
             
 
         elif instruc._type == 'DBDWDA':
