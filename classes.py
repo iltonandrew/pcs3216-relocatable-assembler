@@ -14,7 +14,7 @@ class Symbol:
         self.defined = True
     
     def __str__(self):
-        return "{:<8} {:<8} {:<5} {:<4} {:<10}".format(self._name, (self.address if self.address else '-'), (self.value if self.value else '-'), ('D' if self.defined else 'I'), self._type)
+        return "{:<8} {:<8} {:<11} {:<4} {:<10}".format(self._name, (self.address if self.address else '-'), (self.value if self.value else '-'), ('D' if self.defined else 'I'), self._type)
     
     def __eq__(self, other):
     
@@ -34,16 +34,18 @@ class Mnemonic:
                 mnemonic: str,
                 code: int,
                 size: int,
-                mneType: str,
-                operand: str):
+                name: str,
+                operand: str,
+                mneType: str):
         self._mnemonic = mnemonic.strip()
-        self._code = code
+        self._code = code if code else '-'
         self._size = size if size != None else 0
+        self._name = name.strip()
         self._type = mneType.strip()
         self._operand = operand.strip()
 
     def __str__(self):
-        return "{:<8} {:<5} {:<4} {:<10} {:<10}".format(self._mnemonic,self._code,self._size,self._type,self._operand)
+        return "{:<8} {:<5} {:<4} {:<10} {:<11} {:<10}".format(self._mnemonic,self._code,self._size,self._name,self._operand,self._type)
 
     def size(self):
         return self._size
@@ -63,8 +65,8 @@ class Mnemonic:
         return hash(self._mnemonic)
 
 class OperandMnemonic(Mnemonic):
-    def __init__(self, mnemonic: str, code: int, size: int, mneType: str, operand: str):
-        super().__init__(mnemonic, code, size, mneType, operand)
+    def __init__(self, mnemonic: str, code: int, size: int, name: str, operand: str, mneType: str):
+        super().__init__(mnemonic, code, size, name, operand, mneType)
     
     def code(self, address: str):
         return self._code + address

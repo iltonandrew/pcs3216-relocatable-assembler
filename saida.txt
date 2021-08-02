@@ -1,0 +1,31 @@
+Tabela de simbolos
+Nome     Endereço Valor       I/D  Tipo      
+Módulo   0x10d    somaVetor4  D    nome      
+VETOR    0x105    -           D    público   
+SAIDA    -        -           I    externo   
+TOTAL    0x100    -           D    interno   
+IT       0x101    -           D    interno   
+AUX      0x102    -           D    interno   
+NEXT     0x104    -           D    interno   
+LOOP     0x10d    -           D    interno   
+
+
+Bloco de saida
+Endereço código  rótulo Mnemônico Operando
+0x100    00      TOTAL  K         0       
+0x101    04      IT     K         4       
+0x102    0105    AUX    K         VETOR   
+0x104    02      NEXT   K         2       
+0x105    00      VETOR  K         0       
+0x106    00             $         7       
+0x107    00                               
+0x108    00                               
+0x109    00                               
+0x10a    00                               
+0x10b    00                               
+0x10c    00                               
+0x10d    9102    LOOP   LDI       AUX     
+0x10f    6100           ADD       TOTAL   
+0x111    7100           MM        TOTAL   
+0x113    5101           DEC       IT      
+0x115    0101           JPNZ      IT      

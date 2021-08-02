@@ -12,6 +12,5 @@ LOOP    LDI     AUX
         ADD     TOTAL
         MM      TOTAL
         DEC     IT
-        JPNZ    IT    
-        $       4
+        JPNZ    IT
         #       LOOP
